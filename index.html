@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hey_Lucky19 Live Stream</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0e0e10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .stream-container {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      height: 56.25vw; /* 16:9 ratio for full width */
+      max-height: 100vh;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0, 123, 255, 0.8);
+      border: 3px solid rgba(0, 123, 255, 0.9);
+      background: #1c1c1f;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stream-container">
+    <iframe 
+  src="https://player.twitch.tv/?channel=heylucky19&parent=localhost" 
+  allowfullscreen
+  sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation">
+</iframe>
+  </div>
+
+</body>
+</html>
