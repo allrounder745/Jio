@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hey_Lucky19 Live Stream</title>
+  <title>Live Stream</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,43 +12,188 @@
       margin: 0;
       padding: 0;
       background: #0e0e10;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .click-blocker {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: auto;
+    }
+
+    .main-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
+      flex-direction: column;
     }
 
+    /* Hey_Lucky button */
+    .hey-lucky-btn {
+      position: absolute;
+      top: 600px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 30px;
+      box-shadow: 0 4px 20px rgba(0, 123, 255, 0.6);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .hey-lucky-btn:hover {
+      background: linear-gradient(135deg, #00e6ff, #008cff);
+      box-shadow: 0 6px 25px rgba(0, 150, 255, 0.8);
+    }
+
+    /* Stream container */
     .stream-container {
       position: relative;
       width: 100%;
-      max-width: 100%;
-      height: 56.25vw; /* 16:9 ratio for full width */
+      height: 56.25vw; /* 16:9 ratio */
       max-height: 100vh;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 0 40px rgba(0, 123, 255, 0.8);
       border: 3px solid rgba(0, 123, 255, 0.9);
       background: #1c1c1f;
+      z-index: 2;
     }
 
-    iframe {
+    #twitch-embed,
+    #twitch-embed iframe {
       width: 100%;
       height: 100%;
-      border: none;
+    }
+
+    /* Premium Telegram popup */
+    .telegram-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .popup-box {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 40px 30px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 30px rgba(0, 123, 255, 0.4);
+      width: 350px;
+      backdrop-filter: blur(20px);
+      animation: slideUp 0.5s ease;
+    }
+
+    .popup-box h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .popup-box a {
+      display: inline-block;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      text-decoration: none;
+      border-radius: 35px;
+      font-size: 18px;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 150, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .popup-box a:hover {
+      background: linear-gradient(135deg, #00e6ff, #008cff);
+      box-shadow: 0 6px 25px rgba(0, 150, 255, 0.8);
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #ccc;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="stream-container">
-    <iframe 
-  src="https://player.twitch.tv/?channel=heylucky19&parent=localhost" 
-  allowfullscreen
-  sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation">
-</iframe>
+  <div class="click-blocker"></div>
+
+  <div class="main-wrapper">
+    <div class="hey-lucky-btn">kiya chal raha hai guru</div>
+
+    <div class="stream-container">
+      <div id="twitch-embed"></div>
+    </div>
   </div>
 
+  <!-- Telegram Popup -->
+  <div class="telegram-popup" id="telegramPopup">
+    <div class="popup-box">
+      <h2>Join Our Telegram Channel</h2>
+      <a href="" target="_blank">Join Now</a>
+      <div class="close-btn" onclick="document.getElementById('telegramPopup').style.display='none'">Maybe Later</div>
+    </div>
+  </div>
+
+  <!-- Twitch Embed -->
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+  <script type="text/javascript">
+    new Twitch.Embed("twitch-embed", {
+      width: "100%",
+      height: "100%",
+      channel: "heylucky19",
+      layout: "video",
+      theme: "dark",
+      parent: ["allrounder745.github.io"]
+    });
+  </script>
+
 </body>
-</html>
+</html> 
